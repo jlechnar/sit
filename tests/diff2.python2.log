@@ -1,0 +1,264 @@
+
+################################################
+# setup: Setup diff
+.../test_diff2
+
+################################################
+# setup: create local repository (file system repository) server1
+.../test_diff2/server1
+
+################################################
+# setup: create local / sandbox repository
+.../test_diff2/server1_create
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_diff2/server1/repo .
+ |============================================================================
+Checked out revision 0.
+ '============================================================================
+
+A         project
+A         project/sub_project
+A         project/sub_project/sub_sub_project
+A         project/sub_project/sub_sub_project/sub_sub_sub_project
+A         project/sub_project/sub_sub_project/sub_sub_sub_project/tags
+A         project/sub_project/sub_sub_project/sub_sub_sub_project/trunk
+A         project/sub_project/sub_sub_project/sub_sub_sub_project/trunk/.svnignore
+A         project/sub_project/sub_sub_project/sub_sub_sub_project/releases
+A         project/sub_project/sub_sub_project/sub_sub_sub_project/branches
+A         project/sub_project/sub_sub_project/sub_sub_sub_project/stashes
+Adding         project
+Adding         project/sub_project
+Adding         project/sub_project/sub_sub_project
+Adding         project/sub_project/sub_sub_project/sub_sub_sub_project
+Adding         project/sub_project/sub_sub_project/sub_sub_sub_project/branches
+Adding         project/sub_project/sub_sub_project/sub_sub_sub_project/releases
+Adding         project/sub_project/sub_sub_project/sub_sub_sub_project/stashes
+Adding         project/sub_project/sub_sub_project/sub_sub_sub_project/tags
+Adding         project/sub_project/sub_sub_project/sub_sub_sub_project/trunk
+Adding         project/sub_project/sub_sub_project/sub_sub_sub_project/trunk/.svnignore
+Transmitting file data .done
+Committing transaction...
+Committed revision 1.
+
+################################################
+# setup: 
+
+################################################
+# setup: create local / sandbox repository for user1
+.../test_diff2/user1
+
+ .============================================================================
+ | Executing:  svn checkout file://.../test_diff2/server1/repo/project/sub_project//sub_sub_project/sub_sub_sub_project//trunk .
+ |============================================================================
+A    .svnignore
+Checked out revision 1.
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  python .../../sit.py add test test_file4 .sitconfig
+ |============================================================================
+> Adding ...
+A         test
+A         test/sub_sub_test3_data_link
+A         test/sub_test2
+A         test/sub_test3
+A         test/sub_test3/sub_sub_test3
+A         test/sub_test3/sub_sub_test3/test_file3
+A         test/test_file1
+A         test/test_file2
+A         test/sub_sub_test_link3
+A         test/sub_test_link
+A         test/sub_test
+A         test/sub_test/test_file3
+A         test_file4
+A         .sitconfig
+ '============================================================================
+
+
+ .============================================================================
+ |             show status
+ | Executing:  python .../../sit.py status
+ |============================================================================
+> Changed:
+   A         .sitconfig
+   A         test
+   A         test/sub_sub_test3_data_link
+   A         test/sub_sub_test_link3
+   A         test/sub_test
+   A         test/sub_test/test_file3
+   A         test/sub_test2
+   A         test/sub_test3
+   A         test/sub_test3/sub_sub_test3
+   A         test/sub_test3/sub_sub_test3/test_file3
+   A         test/sub_test_link
+   A         test/test_file1
+   A         test/test_file2
+   A         test_file4
+
+> Untracked:
+  ?          scripts
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  python .../../sit.py commit . -m 'test blabla'
+ |============================================================================
+> Committing data in . ...
+Adding         .sitconfig
+Adding         test
+Adding         test/sub_sub_test3_data_link
+Adding         test/sub_sub_test_link3
+Adding         test/sub_test
+Adding         test/sub_test/test_file3
+Adding         test/sub_test2
+Adding         test/sub_test3
+Adding         test/sub_test3/sub_sub_test3
+Adding         test/sub_test3/sub_sub_test3/test_file3
+Adding         test/sub_test_link
+Adding         test/test_file1
+Adding         test/test_file2
+Adding         test_file4
+Transmitting file data .........done
+Committing transaction...
+Committed revision 2.
+> Updating ...
+Updating '.':
+At revision 2.
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  svn update
+ |============================================================================
+Updating '.':
+At revision 2.
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  svn rm test_file1
+ |============================================================================
+D         test_file1
+ '============================================================================
+
+
+ .============================================================================
+ |             show status
+ | Executing:  python .../../sit.py status
+ |============================================================================
+> Changed:
+   ~         ../../test/sub_test/test_file3
+   !         ../../test/sub_test_link
+   D         ../../test/test_file1
+   M         ../../test/test_file2
+
+> Untracked:
+  ?          ../../scripts
+ '============================================================================
+
+
+ .============================================================================
+ |             show status
+ | Executing:  python .../../sit.py status .
+ |============================================================================
+> Changed:
+   ~         test_file3
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  pwd
+ |============================================================================
+.../test_diff2/user1/test/sub_test
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  python .../../sit.py diff -t diff
+ |============================================================================
+> Detecting folders ...
+> Detected 5 folders in from:
+> Detected 5 folders in to:
+> Finding differences ...
+> Detected 1 changed elements in from:
+> Detected 3 changed elements in to:
+> Detected 1 not mached elements:
+> Showing differences ...
+> To Path Tree:
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test/sub_test_link
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test/test_file1
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test/test_file2
+> From Path Tree:
+/tmp/sit.diff.<DATE_TIME>/from:sandbox/
+/tmp/sit.diff.<DATE_TIME>/from:sandbox/test
+/tmp/sit.diff.<DATE_TIME>/from:sandbox/test/test_file2
+> Differences:
+Only in /tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test: sub_test_link
+Only in /tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test: test_file1
+diff -s -r /tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test/test_file2 /tmp/sit.diff.<DATE_TIME>/from:sandbox/test/test_file2
+1c1
+< test_data2
+---
+> test_data2a
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  python .../../sit.py diff -t diff .
+ |============================================================================
+> Detecting folders ...
+> Detected 0 folders in from:
+> Detected 0 folders in to:
+> Finding differences ...
+> Detected 0 changed elements in from:
+> Detected 0 changed elements in to:
+> Detected 1 not mached elements:
+> No changes detected between paths <.../test_diff2/user1/test/sub_test@sandbox> and <^/project/sub_project/sub_sub_project/sub_sub_sub_project/trunk/test/sub_test@BASE>.:
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  svn status .
+ |============================================================================
+~       sub_test/test_file3
+!       sub_test_link
+D       test_file1
+M       test_file2
+ '============================================================================
+
+
+ .============================================================================
+ | Executing:  python .../../sit.py diff -t diff .
+ |============================================================================
+> Detecting folders ...
+> Detected 4 folders in from:
+> Detected 4 folders in to:
+> Finding differences ...
+> Detected 1 changed elements in from:
+> Detected 3 changed elements in to:
+> Detected 1 not mached elements:
+> Showing differences ...
+> To Path Tree:
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test/sub_test_link
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test/test_file1
+/tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test/test_file2
+> From Path Tree:
+/tmp/sit.diff.<DATE_TIME>/from:sandbox/
+/tmp/sit.diff.<DATE_TIME>/from:sandbox/test
+/tmp/sit.diff.<DATE_TIME>/from:sandbox/test/test_file2
+> Differences:
+Only in /tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test: sub_test_link
+Only in /tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test: test_file1
+diff -s -r /tmp/sit.diff.<DATE_TIME>/to:trunk@BASE/test/test_file2 /tmp/sit.diff.<DATE_TIME>/from:sandbox/test/test_file2
+1c1
+< test_data2
+---
+> test_data2a
+ '============================================================================
+

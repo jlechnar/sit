@@ -1,0 +1,17 @@
+# Description: SIT - Svn with gIT extensions, test suite
+# Author:      jlechnar
+# Licence:     GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+# Source:      https://github.com/jlechnar/sit
+
+EDITOR = vim
+DIFFTOOL = diff
+
+AUTO_UPDATE_AFTER_COMMIT = True
+DISABLE_UPDATE_AFTER_COMMIT = False
+
+AUTO_UPDATE_BEFORE_MERGE = True
+DISABLE_UPDATE_BEFORE_MERGE = False
+
+# FIND_EXCLUDE_DIR = */.svn/*
+# FIND_EXCLUDE_DIR = */.svn2/*
+
