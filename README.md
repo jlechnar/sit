@@ -2,7 +2,7 @@
 
 written by jlechnar
 
-Licence: GNU GENERAL PUBLIC LICENSE, Version 2, June 1991
+Licence: GNU GENERAL PUBLIC LICENSE, Version 3, June 2007
 
 ## The idea
 Subversion (svn) misses some neat features that git supports, which were tried to port over with this project.
